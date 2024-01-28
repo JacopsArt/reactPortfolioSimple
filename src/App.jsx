@@ -1,20 +1,27 @@
-import { useState } from "react";
-import "./App.css";
+import React, { useState } from "react";
+import { Center, ChakraProvider } from "@chakra-ui/react";
 import { portfolioItems } from "./utils/data";
 import { PortfolioItemPage } from "./pages/PortfolioItemPage";
-import { PortfolioPage } from "./pages/PortfolioPage";
+import PortfolioPage from "./pages/PortfolioPage";
 
 export const App = () => {
-  console.log(portfolioItems);
-  const [selectedItem, setSelectedItem] = useState(portfolioItems[0]);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const handleCardClick = (item) => {
+    setSelectedItem(item);
+  };
 
   return (
-    <div className="App">
-      {selectedItem ? (
-        <PortfolioItemPage item={selectedItem} />
-      ) : (
-        <PortfolioPage />
-      )}
-    </div>
+    <ChakraProvider>
+    <Center>
+      <div className="App">
+        {selectedItem ? (
+          <PortfolioItemPage item={selectedItem} />
+        ) : (
+          <PortfolioPage onCardClick={handleCardClick} />
+        )}
+      </div>
+      </Center>
+    </ChakraProvider>
   );
 };
