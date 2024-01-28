@@ -1,15 +1,13 @@
-import { Center, Flex } from "@chakra-ui/react";
-import { PortfolioItemCard } from "./PortfolioItemCard";
-import { portfolioItems } from "../utils/data";
+import { PortfolioItemCard } from '../components/PortfolioItemCard';
+import { portfolioItems } from '../utils/data';
+import { Center } from '@chakra-ui/react';
 
-const PortfolioPage = ({ onCardClick }) => {
+export const PortfolioPage = ({ clickFn }) => {
   return (
-    <Flex gap={5} align='center'>
+    <Center gap={8} h="100vh" bgColor="blue.100">
       {portfolioItems.map((item) => (
-        <PortfolioItemCard key={item.id} item={item} onClick={onCardClick} />
+        <PortfolioItemCard clickFn={clickFn} item={item} key={item.id} />
       ))}
-    </Flex>
+    </Center>
   );
 };
-
-export default PortfolioPage;
